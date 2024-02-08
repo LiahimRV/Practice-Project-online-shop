@@ -13,6 +13,7 @@ export * from './reset-product-cart';
 export * from './set-loading';
 export * from './set-products-data';
 export * from './load-products-async';
+export * from './load-products-cart-async';
 export * from './add-product-async';
 export * from './add-product';
 export * from './edit-product-async';

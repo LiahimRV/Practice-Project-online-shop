@@ -1,6 +1,10 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { loadProductsAsync, removeProductAsync, setLoading } from '../../../../actions';
+import {
+	loadProductsCartAsync,
+	removeProductAsync,
+	setLoading,
+} from '../../../../actions';
 import { LoadedProductForm } from './components';
 import styled from 'styled-components';
 import { selectProducts } from '../../../../selectors';
@@ -12,7 +16,7 @@ const ProductsListContainer = ({ className, handleUpdateProduct }) => {
 	useEffect(() => {
 		dispatch(setLoading(true));
 
-		dispatch(loadProductsAsync()).then(() => {
+		dispatch(loadProductsCartAsync()).then(() => {
 			dispatch(setLoading(false));
 		});
 	}, [dispatch]);
