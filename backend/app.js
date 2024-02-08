@@ -59,6 +59,12 @@ app.get("/products", async (req, res) => {
   res.send({ data: dataProd.map(mapProduct) });
 });
 
+app.get("/products/edit", async (req, res) => {
+  const dataProd = await getProducts(req.query.search);
+
+  res.send({ data: dataProd.map(mapProduct) });
+});
+
 app.get("/products/:id", async (req, res) => {
   try {
     const product = await getProduct(req.params.id);
