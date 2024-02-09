@@ -71,7 +71,7 @@ export const OnlineStore = () => {
 							<Route path="/products/edit" element={<EditProducts />} />
 							<Route
 								path="/user-shopping-cart/:id"
-								element={<EditProducts key={pathname} />}
+								element={<ShoppingCart key={pathname} />}
 							/>
 							<Route path="*" element={<PageNotFound />} />
 						</Routes>
