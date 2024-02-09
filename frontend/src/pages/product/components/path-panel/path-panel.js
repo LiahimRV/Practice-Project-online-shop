@@ -1,4 +1,3 @@
-// Переделать
 import styled from 'styled-components';
 
 const PathPanelContainer = ({ className, children }) => {

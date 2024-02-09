@@ -1,10 +1,10 @@
 import { ACTION_TYPE } from '../actions';
 
-const initialPostsState = {
+const initialProductsState = {
 	products: [],
 };
 
-export const productsReducer = (state = initialPostsState, action) => {
+export const productsReducer = (state = initialProductsState, action) => {
 	switch (action.type) {
 		case ACTION_TYPE.SET_PRODUCTS_DATA:
 			return {

@@ -1,22 +1,22 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
-	loadProductsCartAsync,
+	loadProductsEditPageAsync,
 	removeProductAsync,
 	setLoading,
 } from '../../../../actions';
 import { LoadedProductForm } from './components';
 import styled from 'styled-components';
-import { selectProducts } from '../../../../selectors';
+import { selectEditProductsPage } from '../../../../selectors';
 
 const ProductsListContainer = ({ className, handleUpdateProduct }) => {
 	const dispatch = useDispatch();
-	const products = useSelector(selectProducts);
+	const editProducts = useSelector(selectEditProductsPage);
 
 	useEffect(() => {
 		dispatch(setLoading(true));
 
-		dispatch(loadProductsCartAsync()).then(() => {
+		dispatch(loadProductsEditPageAsync()).then(() => {
 			dispatch(setLoading(false));
 		});
 	}, [dispatch]);
@@ -39,7 +39,7 @@ const ProductsListContainer = ({ className, handleUpdateProduct }) => {
 				<div className="products-list__buttons-bar"></div>
 			</div>
 			<div className="products-list__products">
-				{products.map(
+				{editProducts.map(
 					({
 						id,
 						productName,

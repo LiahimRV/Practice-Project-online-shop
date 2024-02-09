@@ -16,6 +16,7 @@ const authenticated = require("./middlewares/authenticated");
 const hasRole = require("./middlewares/hasRole");
 const ROLES = require("./constants/roles");
 const mapProduct = require("./helpers/mapProduct");
+const path = require("path");
 
 const port = 3001;
 const app = express();
@@ -138,6 +139,10 @@ app.patch("/users/:id", hasRole([ROLES.ADMIN]), async (req, res) => {
   });
 
   res.send({ data: mapUser(newUser) });
+});
+
+app.get("*", (req, res) => {
+  res.sendFile(path.resolve(__dirname, "../frontend/build", "index.html"));
 });
 
 mongoose.connect(process.env.DB_CONNECTION_STRING).then(() => {

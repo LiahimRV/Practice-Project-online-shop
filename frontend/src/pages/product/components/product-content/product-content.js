@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
+import { Breadcrumb } from 'react-bootstrap';
 import { useSelector } from 'react-redux';
 import { Button, ProductImage } from '../../../../components';
 import { selectProduct, selectUserRole } from '../../../../selectors';
 import { useDispatch } from 'react-redux';
 import { addProductInCart } from '../../../../actions';
 import { ROLE } from '../../../../constants';
-import styled from 'styled-components';
 import { PathPanel } from '../path-panel/path-panel';
+import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 const ProductContentContainer = ({ className, product, productName }) => {
 	const loadedProd = useSelector(selectProduct);
@@ -23,7 +25,14 @@ const ProductContentContainer = ({ className, product, productName }) => {
 
 	return (
 		<div className={className}>
-			<PathPanel>Главная / {loadedProd.productName}</PathPanel>
+			<PathPanel>
+				<Breadcrumb>
+					<Breadcrumb.Item linkAs={Link} linkProps={{ to: '/' }}>
+						Главная
+					</Breadcrumb.Item>
+					<Breadcrumb.Item active>{loadedProd.productName}</Breadcrumb.Item>
+				</Breadcrumb>
+			</PathPanel>
 			<div className="product-info-data">
 				<div className="product-info-data__image-wrapper">
 					<ProductImage alt="Photo" height="400px" src={product.imageUrl} />
@@ -149,5 +158,24 @@ export const ProductContent = styled(ProductContentContainer)`
 	& .product-info-data__product-add-to-cart-button button:disabled {
 		background-color: rgb(243, 199, 183);
 		cursor: not-allowed;
+	}
+
+	& .breadcrumb {
+		padding: 0;
+		margin: 0;
+		list-style: none;
+	}
+
+	& .breadcrumb-item {
+		display: inline-block;
+	}
+
+	& .breadcrumb-item + .breadcrumb-item::before {
+		content: ' / ';
+		padding: 0 5px;
+	}
+
+	& .breadcrumb-item.active {
+		color: #000;
 	}
 `;

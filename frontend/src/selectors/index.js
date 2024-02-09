@@ -8,3 +8,4 @@ export * from './select-user';
 export * from './select-cart';
 export * from './select-loader';
 export * from './select-products';
+export * from './select-edit-products-page';

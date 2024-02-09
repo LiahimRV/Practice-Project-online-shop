@@ -97,6 +97,7 @@ const AddProductFormContainer = ({ className }) => {
 		};
 
 		dispatch(addProductAsync(productData));
+		window.location.reload();
 
 		setProductName('');
 		setCategory('');
