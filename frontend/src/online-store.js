@@ -49,37 +49,29 @@ export const OnlineStore = () => {
 		);
 	}, [dispatch]);
 
-	const isMainContainerVisible = !['/login', '/register'].includes(pathname);
-
 	return (
 		<Page>
-			<Routes>
-				<Route path="/login" element={<Auth />} />
-				<Route path="/register" element={<Registration />} />
-			</Routes>
 			<PageContent>
 				<Header />
 
-				{isMainContainerVisible && (
-					<MainContainer>
-						<Routes>
-							<Route path="/" element={<Main />} />
-							<Route
-								path="/products/:id"
-								element={<Product key={pathname} />}
-							/>
-							<Route
-								path="/products/edit"
-								element={<EditProducts key={pathname} />}
-							/>
-							<Route
-								path="/user-shopping-cart/:id"
-								element={<ShoppingCart />}
-							/>
-							<Route path="*" element={<PageNotFound />} />
-						</Routes>
-					</MainContainer>
-				)}
+				<MainContainer>
+					<Routes>
+						<Route path="/" element={<Main />} />
+						<Route
+							path="/products/:id"
+							element={<Product key={pathname} />}
+						/>
+						<Route
+							path="/products/edit"
+							element={<EditProducts key={pathname} />}
+						/>
+						<Route
+							path="/user-shopping-cart/:id"
+							element={<ShoppingCart />}
+						/>
+						<Route path="*" element={<PageNotFound />} />
+					</Routes>
+				</MainContainer>
 			</PageContent>
 		</Page>
 	);
