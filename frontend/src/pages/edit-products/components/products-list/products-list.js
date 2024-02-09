@@ -1,6 +1,10 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { loadProductsEditPageAsync, removeProductAsync } from '../../../../actions';
+import {
+	loadProductsEditPageAsync,
+	removeProductAsync,
+	setLoading,
+} from '../../../../actions';
 import { LoadedProductForm } from './components';
 import styled from 'styled-components';
 import { selectEditProductsPage } from '../../../../selectors';
@@ -10,7 +14,11 @@ const ProductsListContainer = ({ className, handleUpdateProduct }) => {
 	const editProducts = useSelector(selectEditProductsPage);
 
 	useEffect(() => {
-		dispatch(loadProductsEditPageAsync()).then(() => {});
+		dispatch(setLoading(true));
+
+		dispatch(loadProductsEditPageAsync()).then(() => {
+			dispatch(setLoading(false));
+		});
 	}, [dispatch]);
 
 	const handleDeleteProduct = (id) => {
