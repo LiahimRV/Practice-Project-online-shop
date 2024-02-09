@@ -10,6 +10,7 @@ const EditProductsContainer = ({ className }) => {
 		dispatch(editProductAsync(productData, id));
 		window.location.reload();
 	};
+
 	return (
 		<div className={className}>
 			<AddProductPageForm />

@@ -11,7 +11,6 @@ const MainContainer = ({ className }) => {
 	const [searchQuery, setSearchQuery] = useState('');
 	const [sortType, setSortType] = useState('asc');
 	const [selectedCategory, setSelectedCategory] = useState('Все товары');
-	// переделать в будущем
 	const [categories, setCategories] = useState([
 		'Все товары',
 		'Дерево',

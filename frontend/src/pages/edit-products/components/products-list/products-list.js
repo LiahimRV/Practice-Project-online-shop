@@ -1,34 +1,21 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import {
-	loadProductsEditPageAsync,
-	removeProductAsync,
-	setLoading,
-} from '../../../../actions';
+import { loadProductsEditPageAsync, removeProductAsync } from '../../../../actions';
 import { LoadedProductForm } from './components';
 import styled from 'styled-components';
 import { selectEditProductsPage } from '../../../../selectors';
 
 const ProductsListContainer = ({ className, handleUpdateProduct }) => {
 	const dispatch = useDispatch();
-	const [isPageLoaded, setIsPageLoaded] = useState(false);
 	const editProducts = useSelector(selectEditProductsPage);
 
 	useEffect(() => {
-		if (isPageLoaded) {
-			dispatch(setLoading(true));
-
-			dispatch(loadProductsEditPageAsync()).then(() => {
-				dispatch(setLoading(false));
-			});
-		}
-	}, [dispatch, isPageLoaded]);
+		dispatch(loadProductsEditPageAsync()).then(() => {});
+	}, [dispatch]);
 
 	const handleDeleteProduct = (id) => {
-		if (isPageLoaded) {
-			dispatch(removeProductAsync(id));
-			window.location.reload();
-		}
+		dispatch(removeProductAsync(id));
+		window.location.reload();
 	};
 
 	return (
