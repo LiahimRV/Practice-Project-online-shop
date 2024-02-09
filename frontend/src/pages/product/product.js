@@ -9,6 +9,7 @@ import styled from 'styled-components';
 
 const ProductContainer = ({ className }) => {
 	const [error, setError] = useState(null);
+	const [isPageLoaded, setIsPageLoaded] = useState(false);
 	const dispatch = useDispatch();
 	const params = useParams();
 	const productName = useSelector(selectProduct);
@@ -16,6 +17,8 @@ const ProductContainer = ({ className }) => {
 
 	useEffect(() => {
 		dispatch(setLoading(true));
+
+		setIsPageLoaded(true);
 
 		dispatch(loadProductAsync(params.id)).then((productData) => {
 			dispatch(setLoading(false));
@@ -26,7 +29,7 @@ const ProductContainer = ({ className }) => {
 
 	return error ? (
 		<Error error={error} />
-	) : loading ? (
+	) : loading || !isPageLoaded ? (
 		<div className="loader-container">
 			<Loader />
 		</div>

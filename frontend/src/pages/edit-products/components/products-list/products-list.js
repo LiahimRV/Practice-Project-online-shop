@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
 	loadProductsEditPageAsync,
@@ -11,19 +11,24 @@ import { selectEditProductsPage } from '../../../../selectors';
 
 const ProductsListContainer = ({ className, handleUpdateProduct }) => {
 	const dispatch = useDispatch();
+	const [isPageLoaded, setIsPageLoaded] = useState(false);
 	const editProducts = useSelector(selectEditProductsPage);
 
 	useEffect(() => {
-		dispatch(setLoading(true));
+		if (isPageLoaded) {
+			dispatch(setLoading(true));
 
-		dispatch(loadProductsEditPageAsync()).then(() => {
-			dispatch(setLoading(false));
-		});
-	}, [dispatch]);
+			dispatch(loadProductsEditPageAsync()).then(() => {
+				dispatch(setLoading(false));
+			});
+		}
+	}, [dispatch, isPageLoaded]);
 
 	const handleDeleteProduct = (id) => {
-		dispatch(removeProductAsync(id));
-		window.location.reload();
+		if (isPageLoaded) {
+			dispatch(removeProductAsync(id));
+			window.location.reload();
+		}
 	};
 
 	return (
